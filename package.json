@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "name": "photo-grabber",
+  "version": "1.0.0",
+  "bin": "startup.js",
+  "author": "Andreas Christianson",
+  "license": "ISC",
+  "dependencies": {
+    "listr": "^0.14.3",
+    "listr-verbose-renderer": "^0.6.0",
+    "meow": "^8.0.0",
+    "node-fetch": "^2.6.1"
+  }
+}
