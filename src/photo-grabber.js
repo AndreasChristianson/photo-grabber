@@ -41,49 +41,39 @@ export default async (options) => {
         title: 'Downloading images',
         task: (context) => {
           return new Listr(
-            context.imagesUrls.map(
-              (imageUrl) => ({
-                title: imageUrl,
-                task: (context) => {
-                  context[imageUrl] = {}
-                  context[imageUrl].filename = Url.parse(imageUrl)
-                    .pathname.split('/')
-                    .pop()
-                  context[imageUrl].savePath = path.join(
-                    context.saveDir,
-                    context[imageUrl].filename
-                  )
-                  return new Listr(
-                    [
-                      {
-                        title: 'fetching',
-                        task: async (context, task) => {
-                          context[imageUrl].response = await fetch(imageUrl)
-                          task.output = `status: ${context[imageUrl].response.status}`
-                        },
-                      },
-                      {
-                        title: `saving`,
-                        task: async (context, task) => {
-                          task.output = `saving to ${context[imageUrl].savePath}`
-                          const bytes = await downloadImage(
-                            context[imageUrl].response,
-                            context[imageUrl].savePath
-                          )
-                          task.output = `saved ${bytes} bytes`
-                        },
-                      },
-                    ],
-                    {
-                      renderer: VerboseRenderer,
-                    }
-                  )
-                },
-              }),
-              {
-                renderer: VerboseRenderer,
-              }
-            )
+            context.imagesUrls.map((imageUrl) => ({
+              title: imageUrl,
+              task: (context) => {
+                context[imageUrl] = {}
+                context[imageUrl].filename = Url.parse(imageUrl)
+                  .pathname.split('/')
+                  .pop()
+                context[imageUrl].savePath = path.join(
+                  context.saveDir,
+                  context[imageUrl].filename
+                )
+                return new Listr([
+                  {
+                    title: 'fetching',
+                    task: async (context, task) => {
+                      context[imageUrl].response = await fetch(imageUrl)
+                      task.output = `status: ${context[imageUrl].response.status}`
+                    },
+                  },
+                  {
+                    title: `saving`,
+                    task: async (context, task) => {
+                      task.output = `saving to ${context[imageUrl].savePath}`
+                      const bytes = await downloadImage(
+                        context[imageUrl].response,
+                        context[imageUrl].savePath
+                      )
+                      task.output = `saved ${bytes} bytes`
+                    },
+                  },
+                ])
+              },
+            }))
           )
         },
       },

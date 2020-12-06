@@ -4,7 +4,7 @@ import grabber from './photo-grabber.js'
 const cli = meow(
   `
     Usage
-      $ foo <input>
+      $ photo-grabber <options>
  
     Options
     --url, -u page to scrape
@@ -15,9 +15,12 @@ const cli = meow(
       optional
     --saveDir, -d where to save the images 
       default: \`.\`
- 
-    Examples
-      $ photo-grabber
+    
+    Example
+      $ photo-grabber -d /Users/sullage/Desktop/pictures \\
+        -r '""(http://image\d.photobiz.com/\d{4}/20_\d{14}_\d{7}_)""' \\
+        -s xlarge.jpg \\
+        --url 'http://www.mystudio.com/proofing/smiths/gallery'
 `,
   {
     flags: {
