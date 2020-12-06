@@ -17,10 +17,10 @@ const cli = meow(
       default: \`.\`
     
     Example
-      $ photo-grabber -d /Users/sullage/Desktop/pictures \\
+      $ photo-grabber -d ~/Desktop \\
         -r '""(http://image\d.photobiz.com/\d{4}/20_\d{14}_\d{7}_)""' \\
         -s xlarge.jpg \\
-        --url 'http://www.mystudio.com/proofing/smiths/gallery'
+        --url 'http://www.mystudio.com/proofing/smith/gallery'
 `,
   {
     flags: {
@@ -37,6 +37,12 @@ const cli = meow(
       suffix: {
         type: 'string',
         alias: 's',
+        default: ''
+      },
+      prefix: {
+        type: 'string',
+        alias: 'p',
+        default: ''
       },
       saveDir: {
         type: 'string',

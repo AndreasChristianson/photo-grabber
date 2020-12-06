@@ -1,2 +1,2 @@
-export default (imageMatches, suffix) =>
-  imageMatches.map((imageMatch) => `${imageMatch}${suffix}`)
+export default ({images, suffix, prefix}) =>
+images.map((imageMatch) => `${prefix}${imageMatch}${suffix}`)

@@ -5,6 +5,7 @@
   "bin": "startup.js",
   "author": "Andreas Christianson",
   "license": "ISC",
+  "repository": "https://github.com/AndreasChristianson/photo-grabber",
   "scripts": {
     "lint": "prettier --write ."
   },

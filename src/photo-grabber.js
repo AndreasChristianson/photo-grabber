@@ -34,7 +34,7 @@ export default async (options) => {
       {
         title: `formatting image urls`,
         task: async (context, task) => {
-          context.imagesUrls = buildImageUrls(context.images, context.suffix)
+          context.imagesUrls = buildImageUrls(context)
         },
       },
       {
