@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "photo-grabber",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "bin": "startup.js",
   "author": "Andreas Christianson",
   "license": "ISC",
