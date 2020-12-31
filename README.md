@@ -10,14 +10,21 @@ npm install -g photo-grabber
 
 ## Options
 
-- --url, -u page to scrape
+To see these from the command line: `photo-grabber --help`
+
+- `--url`, `-u` page to scrape
   - required
-- --regex, -r regex for finding images in the html
-  -required
-- --suffix, -s suffix to append to image urls
+- `--regex`, `-r` regex for finding images in the html
+  - required
+- `--suffix`, `-s` suffix to append to image urls
   - optional
-- --saveDir, -d where to save the images
-  - default: \`.\`
+  - default: blank
+- `--prefix`, `-p` prefix to prepend to image urls
+  - optional
+  - default: blank
+- `--saveDir`, `-d` where to save the images
+  - optional
+  - default: the current dir
 
 ## Example
 

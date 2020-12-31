@@ -13,14 +13,16 @@ const cli = meow(
       required
     --suffix, -s suffix to append to image urls
       optional
+    --prefix, -p prefix to prepend to image urls
+      optional
     --saveDir, -d where to save the images 
       default: \`.\`
     
     Example
-      $ photo-grabber -d ~/Desktop \\
-        -r '""(http://image\d.photobiz.com/\d{4}/20_\d{14}_\d{7}_)""' \\
-        -s xlarge.jpg \\
-        --url 'http://www.mystudio.com/proofing/smith/gallery'
+      $ photo-grabber \\
+        -u http://google.com \\
+        -r 'src="(/logos/doodles.*?)"' \\
+        -p http://google.com
 `,
   {
     flags: {
