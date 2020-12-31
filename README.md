@@ -12,8 +12,8 @@ npm install -g photo-grabber
 
 - --url, -u page to scrape
   - required
-- --regex, -r regex for finding images in the html
-  -required
+- --regex, -r regex for finding images in the html. (The first capture group will be used)
+  - required
 - --suffix, -s suffix to append to image urls
   - optional
 - --saveDir, -d where to save the images
