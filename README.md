@@ -14,7 +14,7 @@ To see these from the command line: `photo-grabber --help`
 
 - `--url`, `-u` page to scrape
   - required
-- `--regex`, `-r` regex for finding images in the html
+- `--regex`, `-r` regex for finding images in the html. The first capture group will be used.
   - required
 - `--suffix`, `-s` suffix to append to image urls
   - optional
