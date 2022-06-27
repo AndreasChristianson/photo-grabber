@@ -13,7 +13,7 @@
     "listr": "^0.14.3",
     "listr-verbose-renderer": "^0.6.0",
     "meow": "^8.0.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
     "prettier": "^2.2.1"
