@@ -12,10 +12,10 @@
   "dependencies": {
     "listr": "^0.14.3",
     "listr-verbose-renderer": "^0.6.0",
-    "meow": "^8.0.0",
-    "node-fetch": "^2.6.7"
+    "meow": "^12.1.1",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "prettier": "^2.2.1"
+    "prettier": "^3.0.3"
   }
 }
