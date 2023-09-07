@@ -7,13 +7,14 @@ import Url from 'url'
 import path from 'path'
 import VerboseRenderer from 'listr-verbose-renderer'
 
+
 export default async (options) => {
   const tasks = new Listr(
     [
       {
         title: `fetching ${options.url}`,
         task: async (context, task) => {
-          context.response = await fetch(context.url)
+          context.response = await fetch(context.url, {headers: {'Cookie': context.cookie}})
           task.output = `status: ${context.response.status}`
         },
       },
@@ -22,6 +23,24 @@ export default async (options) => {
         task: async (context, task) => {
           context.text = await context.response.text()
           task.output = `size: ${context.text.length} chars`
+        },
+      },
+      {
+        title: `parsing set-cookie header`,
+        task: async (context, task) => {
+          context.newCookies=context.response.headers.raw()['set-cookie'].map((entry)=>{
+            const parts = entry.split(';');
+            return parts[0];
+          }).join(';')
+          task.output = `new cookies: ${context.newCookies}`
+        },
+      },
+      {
+        title: `extracting referer`,
+        task: async (context, task) => {
+          context.referer = new URL(options.url).origin
+          // console.log(new URL(options.url).origin)
+          task.output = `referer: ${context.referer}`
         },
       },
       {
@@ -45,9 +64,10 @@ export default async (options) => {
               title: imageUrl,
               task: (context) => {
                 context[imageUrl] = {}
-                context[imageUrl].filename = Url.parse(imageUrl)
+                const asUrl=Url.parse(imageUrl)
+                context[imageUrl].filename = asUrl
                   .pathname.split('/')
-                  .pop()
+                  .pop() + asUrl.search + options.fileSuffix
                 context[imageUrl].savePath = path.join(
                   context.saveDir,
                   context[imageUrl].filename
@@ -56,7 +76,10 @@ export default async (options) => {
                   {
                     title: 'fetching',
                     task: async (context, task) => {
-                      context[imageUrl].response = await fetch(imageUrl)
+                      context[imageUrl].response = await fetch(imageUrl, {headers: {
+                        'Cookie': context.newCookies+';'+context.cookie,
+                          'Referer': context.referer
+                      }})
                       task.output = `status: ${context[imageUrl].response.status}`
                     },
                   },

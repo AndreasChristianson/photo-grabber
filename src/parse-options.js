@@ -36,6 +36,11 @@ const cli = meow(
         alias: 'r',
         isRequired: true,
       },
+      cookie: {
+        type: 'string',
+        alias: 'c',
+        default: ''
+      },
       suffix: {
         type: 'string',
         alias: 's',
@@ -44,6 +49,10 @@ const cli = meow(
       prefix: {
         type: 'string',
         alias: 'p',
+        default: ''
+      },
+      fileSuffix: {
+        type: 'string',
         default: ''
       },
       saveDir: {
