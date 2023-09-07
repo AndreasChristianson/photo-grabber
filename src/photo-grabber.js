@@ -39,7 +39,6 @@ export default async (options) => {
         title: `extracting referer`,
         task: async (context, task) => {
           context.referer = new URL(options.url).origin
-          // console.log(new URL(options.url).origin)
           task.output = `referer: ${context.referer}`
         },
       },
